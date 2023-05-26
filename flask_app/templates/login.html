@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="form">
+    <form method="post" action="">
+      {{ form.csrf_token }}
+      <h1>Login</h1>
+      <div class="content">
+        <div class="input-field">
+          {{ form.email(placeholder="example@gmail.com") }}
+        </div>
+        <div class="input-field">
+          {{ form.password(placeholder="Password") }}
+        </div>
+      </div>
+      <div class="action">
+        {{ form.btn_login(class="btn btn-dark btn-lg m-2") }}
+      </div>
+    </form>
+  </div>
+{% endblock %}

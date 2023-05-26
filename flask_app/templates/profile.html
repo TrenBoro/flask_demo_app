@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="form" id="profile-books-form">
+    <form method="post" action="">
+      <div class="text-center">
+        {% if not borrowed_books|length %}
+          <h1>No books yet!</h1>
+        {% else %}
+          <h1>Your borrowed books</h1>
+          {% for book in borrowed_books %}
+            <div class="book">
+              <h3> {{ book.title }} </h3>
+              <p> {{ book.author }} </p>
+              {% if book in current_user.borrowed_books %}
+                <a href="{{ url_for('return_book', book_id=book.id) }}">
+                  <button class="btn btn-warning m-2" type="button">Return</button>
+                </a>
+              {% endif %}
+            </div>
+          {% endfor %}
+        {% endif %}
+      </div>
+    </form>
+  </div>
+{% endblock %}

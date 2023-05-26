@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="form" id="books_form">
+    <form method="post" action="">
+      <div class="text-center">
+        <h1>List of the books</h1>
+          {% for book in books %}
+            <div class="book">
+              <h2> {{ book.title }} </h2>
+              <h4> {{ book.author }} </h4>
+              <h5> Books left {{ book.books_left() }} </h5>
+              {% if not book.in_stock() %}
+                <button class="btn btn-secondary m-2" type="button" disabled>Out of Stock</button>
+              {% else %}
+                {% if book in current_user.borrowed_books %}
+                  <button class="btn btn-secondary m-2" type="button" disabled>Borrowed</button>
+                {% else %}
+                  <a href="{{ url_for('borrow_book', book_id=book.id) }}">
+                    <button class="btn btn-success m-2" type="button">Borrow</button>
+                  </a>
+                {% endif %}
+              {% endif %}
+            </div>
+          {% endfor %}
+      </div>
+    </form>
+  </div>
+{% endblock %}
