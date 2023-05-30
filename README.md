@@ -22,7 +22,7 @@ This depends on the python version that is installed on the local machine.
 In the same directory type the following to activate the environment for Linux:
 
 ```
-. project_env\bin\activate
+. project_env/bin/activate
 ```
 The following command is for Windows:
 
